@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVC_Lagersystem.Models.StockItem>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Welcome to the store!</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "/", new { q = ViewBag.SearchInput, s = "Name", r = ViewBag.Reverse })
+        </th>
+        <th>
+            @Html.ActionLink("Description", "/", new { q = ViewBag.SearchInput, s = "Description", r = ViewBag.Reverse })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ItemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ItemID })
+        </td>
+    </tr>
+}
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
